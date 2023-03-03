@@ -90,6 +90,20 @@ export function multiply(number1, number2) {
     let str2 = number2.toString();
     let result = '0';
 
+    if (str1[0] == '-' && str2[0] == '-') {
+        str1 = str1.slice(1);
+        str2 = str2.slice(1);
+        return multiply(str2, str1);
+    }
+    if (str1[0] == '-' && str2[0] != '-') {
+        str1 = str1.slice(1);
+        return '-' + multiply(str1, str2);
+    }
+    if (str1[0] != '-' && str2[0] == '-') {
+        str2 = str2.slice(1);
+        return '-' + multiply(str1, str2);
+    }
+
     if (str1.length < str2.length) return multiply(str2, str1);
 
     for (let i = str2.length - 1; i >= 0; i--) {
@@ -109,6 +123,20 @@ export function divide(number1, number2) {
     let result = '';
     let reminder = '';
     let quotient;
+
+    if (str1[0] == '-' && str2[0] == '-') {
+        str1 = str1.slice(1);
+        str2 = str2.slice(1);
+        return divide(str2, str1);
+    }
+    if (str1[0] == '-' && str2[0] != '-') {
+        str1 = str1.slice(1);
+        return '-' + divide(str1, str2);
+    }
+    if (str1[0] != '-' && str2[0] == '-') {
+        str2 = str2.slice(1);
+        return '-' + divide(str1, str2);
+    }
 
     if ( !compare(str1, str2) ) return '0';
 
